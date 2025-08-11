@@ -1,11 +1,10 @@
-import sys
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
-
 
 def main():
 
@@ -40,7 +39,12 @@ def main():
             if asteroid.collide(player):
                 print("Game Over")
                 sys.exit()
-        
+
+            for shot in shots:
+                if asteroid.collide(shot):
+                    shot.kill()
+                    asteroid.split()
+              
         screen.fill("black")
 
         for object in drawable:
